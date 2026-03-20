@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass Chatbot UI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="header">
+                <button class="glass-button new-chat-btn">New Chat</button>
+                <h2>Chat History</h2>
+            </div>
+            <div class="chat-list">
+                <!-- Chat items will be added here -->
+            </div>
+        </div>
+        <div class="divider" aria-hidden="true"></div>
+        <div class="right-panel">
+            <div class="chat-area">
+                <div class="messages" style="scroll-behavior: smooth; ">
+                    <!-- Messages will be displayed here -->
+                    
+                    <div class="empty-state">
+                        <div class="empty-icon">💬</div>
+                        <p>No messages yet. Start a conversation!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="input-area">
+                <input type="text" class="glass-input" placeholder="Type your message...">
+                <button class="glass-button send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+    <button class="theme-toggle glass-button">🌙</button>
+    <script src="script.js"></script>
+</body>
+</html>

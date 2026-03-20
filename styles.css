@@ -1,0 +1,393 @@
+/* CSS Variables for themes */
+:root {
+    --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-secondary: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    --accent: #ff6b6b;
+    --accent-hover: #ff5252;
+}
+
+[data-theme="dark"] {
+    --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    --bg-secondary: rgba(0, 0, 0, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    --accent: #ff6b6b;
+    --accent-hover: #ff5252;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    height: 100vh;
+    overflow: hidden;
+    font-size: 16px; /* Base font size for rem calculations */
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+.left-panel, .right-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    min-width: 15rem; /* Use rem for scalability */
+    max-width: 50vw;
+}
+
+.divider {
+    width: 10px;
+    cursor: col-resize;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.2s ease;
+}
+
+.divider:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.divider.active {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.left-panel {
+    width: 30vw; /* Use vw for responsive width */
+    min-width: 250px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-panel {
+    width: 70vw; /* Use vw for responsive width */
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    padding: 1.25rem; /* 20px */
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.header h2 {
+    margin-top: 0.625rem; /* 10px */
+    font-size: 1.2rem;
+}
+
+.chat-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.625rem; /* 10px */
+}
+
+.chat-item {
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+    border-radius: 0.625rem; /* 10px */
+    padding: 0.9375rem; /* 15px */
+    margin-bottom: 0.625rem; /* 10px */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.chat-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.chat-item.active {
+    background: var(--accent);
+    color: white;
+}
+
+.chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem; /* 20px */
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.625rem; /* 10px */
+    display: flex;
+    flex-direction: column;
+}
+
+.messages-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem;
+}
+
+.message {
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+    border-radius: 0.9375rem; /* 15px */
+    padding: 0.9375rem; /* 15px */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    font-size: 1rem;
+    max-width: 70%;
+    width: fit-content;
+}
+
+.message.user {
+    align-self: flex-end;
+    background: var(--accent);
+    color: white;
+}
+
+.message.bot {
+    align-self: flex-start;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.empty-icon {
+    font-size: 4rem; /* Use rem */
+    margin-bottom: 1.25rem; /* 20px */
+}
+
+.input-area {
+    display: flex;
+    padding: 1.25rem; /* 20px */
+    border-top: 1px solid var(--glass-border);
+    gap: 0.625rem; /* 10px */
+}
+
+.glass-input {
+    flex: 1;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.5625rem; /* 25px */
+    padding: 0.9375rem 1.25rem; /* 15px 20px */
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    min-height: 3rem; /* Ensure touch-friendly */
+}
+
+.glass-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.glass-button {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.5625rem; /* 25px */
+    padding: 0.9375rem 1.875rem; /* 15px 30px */
+    color: var(--text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    min-height: 3rem; /* Touch-friendly */
+    min-width: 5rem; /* Ensure button is wide enough */
+}
+
+.glass-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 1.25rem; /* 20px */
+    right: 1.25rem; /* 20px */
+    z-index: 1000;
+    min-height: 3rem;
+    min-width: 3rem;
+}
+
+/* Responsive Design */
+
+/* Large screens (desktops) */
+@media (min-width: 1200px) {
+    .left-panel {
+        width: 25vw;
+        max-width: 350px;
+    }
+    .right-panel {
+        width: 75vw;
+    }
+}
+
+/* Medium screens (tablets landscape) */
+@media (max-width: 1199px) and (min-width: 769px) {
+    .left-panel {
+        width: 30vw;
+        min-width: 200px;
+        max-width: 300px;
+    }
+    .right-panel {
+        width: 70vw;
+        min-width: 400px;
+    }
+}
+
+/* Small screens (tablets portrait and large phones) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+    .left-panel, .right-panel {
+        width: 100%;
+        resize: vertical; /* Change to vertical resize on mobile */
+        min-height: 200px;
+        max-height: 50vh;
+        min-width: auto;
+        max-width: none;
+    }
+    .left-panel {
+        max-height: 40vh;
+    }
+    .right-panel {
+        max-height: 60vh;
+        min-height: 300px;
+    }
+    .header {
+        padding: 1rem;
+    }
+    .header h2 {
+        font-size: 1.1rem;
+    }
+    .chat-item {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    .chat-area {
+        padding: 1rem;
+    }
+    .message {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+        max-width: 85%;
+    }
+    .input-area {
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+    .glass-input {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        min-height: 2.5rem;
+    }
+    .glass-button {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        min-height: 2.5rem;
+        min-width: 4rem;
+    }
+    .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+        min-height: 2.5rem;
+        min-width: 2.5rem;
+    }
+}
+
+/* Extra small screens (phones) */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Smaller base font for very small screens */
+    }
+    .left-panel {
+        max-height: 35vh;
+    }
+    .right-panel {
+        max-height: 65vh;
+    }
+    .empty-icon {
+        font-size: 3rem;
+    }
+    .chat-item {
+        padding: 0.625rem;
+        margin-bottom: 0.5rem;
+    }
+    .message {
+        padding: 0.625rem;
+        margin-bottom: 0.625rem;
+    }
+    .input-area {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .glass-input {
+        min-height: 2.25rem;
+    }
+    .glass-button {
+        min-height: 2.25rem;
+        width: 100%;
+    }
+}
+
+/* Orientation changes for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .left-panel {
+        max-height: 60vh;
+    }
+    .right-panel {
+        max-height: 40vh;
+        min-height: 250px;
+    }
+}
+
+/* Touch devices - ensure touch targets are adequate */
+@media (pointer: coarse) {
+    .glass-button, .glass-input, .chat-item {
+        min-height: 44px; /* iOS recommended touch target size */
+    }
+    .theme-toggle {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Ensure glass effects still look good on high DPI */
+    .left-panel, .right-panel {
+        border-width: 0.5px;
+    }
+}
